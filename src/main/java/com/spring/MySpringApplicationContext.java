@@ -3,12 +3,10 @@ package com.spring;
 import java.beans.Introspector;
 import java.io.File;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.*;
 
 public class MySpringApplicationContext {
-    private final Class<?> configClass; // 配置类
     private final Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>(); // Bean定义Map
     private final Map<String, Object> singletonObjects = new HashMap<>(); // 单例池
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>(); // 后置对象缓存列表
@@ -17,7 +15,7 @@ public class MySpringApplicationContext {
      * 构造函数，读取配置类
      */
     public MySpringApplicationContext(Class<?> configClass) {
-        this.configClass = configClass;
+        // 配置类
         scan(configClass);
 
         for (Map.Entry<String, BeanDefinition> entry : beanDefinitionMap.entrySet()) {
